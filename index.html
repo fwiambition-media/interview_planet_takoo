@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FWI AMBITION — Trame d’échange (Thierry Dupré) | Interview Podcast</title>
+    <meta name="description"
+    content="Trame d’échange pour l’interview podcast FWI AMBITION avec Thierry Dupré, créateur de La planète Takoo. Document clair, responsive, prêt à partager." />
+
+    <style>
+        :root {
+            /* Couleurs FWI AMBITION (palette fournie) */
+            --navy: #151D53;
+            --yellow: #FAC710;
+            --orange: #FB8500;
+            --sky: #8ECAE6;
+            --cream: #FFE5A6;
+            --teal: #219EBC;
+
+            /* UI */
+            --bg: #0b0f2a;
+            --surface: rgba(255, 255, 255, .06);
+            --surface2: rgba(255, 255, 255, .08);
+            --border: rgba(255, 255, 255, .12);
+            --text: #F3F6FF;
+            --muted: rgba(243, 246, 255, .72);
+            --muted2: rgba(243, 246, 255, .60);
+            --shadow: 0 18px 50px rgba(0, 0, 0, .35);
+
+            --radius: 18px;
+            --radius2: 26px;
+
+            --max: 980px;
+
+            --h1: clamp(1.9rem, 4.2vw, 2.8rem);
+            --h2: clamp(1.25rem, 2.2vw, 1.7rem);
+            --h3: clamp(1.05rem, 1.6vw, 1.25rem);
+            --p: clamp(1rem, 1.1vw, 1.05rem);
+            --small: .93rem;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 18px
+        }
+
+        /* Top bar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            backdrop-filter: blur(10px);
+            background: rgba(7, 10, 31, .65);
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 900;
+            letter-spacing: .3px;
+        }
+
+
+        nav {
+            display: none;
+            gap: 10px
+        }
+
+        nav a {
+            color: var(--muted);
+            padding: 8px 10px;
+            border-radius: 12px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, .06);
+            color: var(--text)
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+            cursor: pointer;
+            transition: transform .15s ease, background .15s ease, border-color .15s ease;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            background: #FFE5A6;
+            border-color: rgba(255, 255, 255, .22)
+        }
+
+        .btn-primary {
+            border: 0;
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
+            color: #0b0f2a;
+            font-weight: 900;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 34px 0 18px
+        }
+
+        .heroCard {
+            border-radius: var(--radius2);
+            padding: 20px;
+
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            margin: 10px 0 8px;
+            font-size: var(--h1);
+            line-height: 1.05
+        }
+
+        .sub {
+            margin: 0;
+            color: var(--muted);
+            font-size: var(--p);
+            line-height: 1.6;
+            max-width: 75ch
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(142, 202, 230, .24);
+            background: rgba(142, 202, 230, .12);
+            color: rgba(243, 246, 255, .92);
+            font-size: .92rem;
+            width: fit-content;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--teal);
+            box-shadow: 0 0 0 4px rgba(33, 158, 188, .18)
+        }
+
+        .heroMeta {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .meta {
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .05);
+            padding: 12px 14px;
+        }
+
+        .meta b {
+            display: block;
+            margin-bottom: 4px
+        }
+
+        .meta p {
+            margin: 0;
+            color: var(--muted2);
+            line-height: 1.5;
+            font-size: var(--small)
+        }
+
+        /* Layout */
+        main {
+            padding-bottom: 44px
+        }
+
+        section {
+            padding: 22px 0
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .card {
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .05);
+            padding: 16px;
+        }
+
+        .card h2 {
+            margin: 0 0 6px;
+            font-size: var(--h2)
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: var(--p)
+        }
+
+        .small {
+            color: var(--muted2);
+            font-size: var(--small);
+            line-height: 1.55
+        }
+
+        /* Agenda (flow) */
+        .flow {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .num {
+            width: 34px;
+            height: 34px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: rgba(33, 158, 188, .16);
+            border: 1px solid rgba(33, 158, 188, .25);
+            font-weight: 900;
+            flex: 0 0 auto;
+            margin-top: 2px;
+        }
+
+        .step b {
+            display: block;
+            margin-bottom: 2px
+        }
+
+        .step span {
+            display: block;
+            color: var(--muted);
+            line-height: 1.55
+        }
+
+        /* Anchors */
+        .anchors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .06);
+            color: rgba(243, 246, 255, .9);
+            font-size: .92rem;
+        }
+
+        .chip:hover {
+            background: rgba(255, 255, 255, .09)
+        }
+
+        .chip.teal {
+            border-color: rgba(33, 158, 188, .26);
+            background: rgba(33, 158, 188, .12)
+        }
+
+        .chip.yellow {
+            border-color: rgba(250, 199, 16, .30);
+            background: rgba(250, 199, 16, .12)
+        }
+
+        .chip.orange {
+            border-color: rgba(251, 133, 0, .28);
+            background: rgba(251, 133, 0, .12)
+        }
+
+        /* Accordion sections */
+        details {
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .05);
+            padding: 12px 14px;
+            transition: background .15s ease, border-color .15s ease;
+        }
+
+        details[open] {
+            border-color: rgba(250, 199, 16, .26);
+            background: rgba(250, 199, 16, .06)
+        }
+
+        summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-weight: 900;
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        .chev {
+            width: 28px;
+            height: 28px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .06);
+            display: grid;
+            place-items: center;
+            transition: transform .15s ease;
+            flex: 0 0 auto;
+        }
+
+        details[open] .chev {
+            transform: rotate(180deg)
+        }
+
+        .content {
+            padding-top: 10px
+        }
+
+        .content ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.7
+        }
+
+        .content li {
+            margin: 6px 0
+        }
+
+        .content p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(7, 10, 31, .35);
+            padding: 22px 0;
+            color: var(--muted2);
+        }
+
+        .foot {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 860px) {
+            nav {
+                display: flex
+            }
+
+            .heroMeta {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .foot {
+                flex-direction: row;
+                align-items: center
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            .btn {
+                transition: none
+            }
+
+            .chev {
+                transition: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <a class="brand" href="#top" aria-label="FWI Ambition — Trame d’échange">
+
+                    <span>FWI AMBITION</span>
+                </a>
+
+                <nav aria-label="Sommaire">
+                    <a href="#structure">Structure</a>
+                    <a href="#axes">Axes</a>
+                    <a href="#bonnes-pratiques">Conseils</a>
+                </nav>
+
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <a class="btn btn-primary" href="#axes">Voir les axes</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="container">
+                <div class="heroCard">
+                    <span class="pill"><span class="dot"></span> Trame d’échange — Interview Podcast</span>
+                    <h1>Trame d’échange — Thierry Dupré</h1>
+                    <p class="sub">
+    Ce document sert de <b>repère</b> pour une discussion fluide et naturelle autour de votre
+    parcours, de votre univers créatif et du projet <b>La planète Takoo</b>.
+    Il ne s’agit pas d’une liste de questions à suivre point par point : l’échange se construit
+    en rebondissant sur vos réponses, votre sensibilité artistique et ce qui émerge dans la conversation.
+</p>
+
+                    <div class="heroMeta" id="structure">
+    <div class="meta">
+        <b>Format</b>
+        <p>Podcast en studio (discussion approfondie, ton conversationnel)</p>
+    </div>
+    <div class="meta">
+        <b>Objectif</b>
+        <p>Mettre en lumière La planète Takoo, votre démarche créative et la construction de votre univers éditorial</p>
+    </div>
+    <div class="meta">
+        <b>Approche</b>
+        <p>Écoute, relances naturelles, vision artistique, narration, identité caribéenne et évolution du projet</p>
+    </div>
+</div>
+
+                    <div class="anchors" aria-label="Accès rapide">
+                        <a class="chip teal" href="#axes">Axes de discussion</a>
+                        <a class="chip yellow" href="#deroule">Déroulé recommandé</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deroule">
+            <div class="container">
+                <div class="card">
+                    <h2>Déroulé recommandé</h2>
+                    <p>Un fil conducteur simple pour garder une conversation naturelle, sans enchaînement mécanique.</p>
+
+                    <div class="flow">
+    <div class="step">
+        <div class="num">1</div>
+        <div>
+            <b>Ouverture</b>
+            <span>Poser l’ambiance et vous laisser vous présenter avec vos mots, votre énergie et votre vision.</span>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">2</div>
+        <div>
+            <b>Le parcours</b>
+            <span>Revenir sur votre cheminement personnel et créatif, et sur ce qui vous a amené à créer.</span>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">3</div>
+        <div>
+            <b>La planète Takoo</b>
+            <span>Raconter la naissance du projet, son univers, ses inspirations et sa construction dans le temps.</span>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">4</div>
+        <div>
+            <b>L’univers artistique</b>
+            <span>Explorer votre style, votre imaginaire, vos influences et votre manière de raconter en images et en narration.</span>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">5</div>
+        <div>
+            <b>La vision</b>
+            <span>Parler de la place de la création caribéenne, de la transmission culturelle et de ce que vous souhaitez construire.</span>
+        </div>
+    </div>
+    <div class="step">
+        <div class="num">6</div>
+        <div>
+            <b>Clôture</b>
+            <span>Partager un message final, les prochaines étapes du projet et où suivre votre travail.</span>
+        </div>
+    </div>
+</div>
+
+                    <p class="small" style="margin-top:12px;">
+                        <b>Note :</b> si un thème prend de la place naturellement, on le laisse vivre. Le but est de
+                        raconter une histoire.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="axes">
+            <div class="container">
+                <div class="card">
+                    <h2>Axes de discussion (repères)</h2>
+                    <p>Ces axes guident l’échange. Les relances se font au fil de la conversation, sans ordre imposé.
+                    </p>
+                </div>
+
+                <div class="grid" style="margin-top:14px; gap:10px;">
+                    <details open>
+    <summary>
+        1) Parcours & univers créatif
+        <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="rgba(243,246,255,.9)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </summary>
+    <div class="content">
+        <ul>
+            <li>Se présenter avec ses mots, son univers et sa sensibilité.</li>
+            <li>Ce qui a nourri l’envie de créer et de raconter.</li>
+            <li>Les moments ou influences qui ont façonné votre regard artistique.</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary>
+        2) La naissance de La planète Takoo
+        <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="rgba(243,246,255,.9)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </summary>
+    <div class="content">
+        <ul>
+            <li>Comment l’idée du projet est apparue.</li>
+            <li>Pourquoi ce nom, cet univers et cette direction.</li>
+            <li>Comment le projet a évolué jusqu’au deuxième tome.</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary>
+        3) Construction d’un univers artistique et narratif
+        <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="rgba(243,246,255,.9)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </summary>
+    <div class="content">
+        <ul>
+            <li>Le style visuel, les codes, les personnages ou les symboles.</li>
+            <li>La manière de raconter une histoire à travers ce projet.</li>
+            <li>L’équilibre entre imagination, identité et cohérence créative.</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary>
+        4) Créer depuis la Caraïbe / en tant qu’artiste caribéen
+        <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="rgba(243,246,255,.9)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </summary>
+    <div class="content">
+        <ul>
+            <li>La place de l’identité caribéenne dans votre démarche.</li>
+            <li>Les défis et opportunités lorsqu’on crée depuis cet environnement.</li>
+            <li>Ce que vous souhaitez transmettre à travers votre travail.</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary>
+        5) Parcours entrepreneurial & développement du projet
+        <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="rgba(243,246,255,.9)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </summary>
+    <div class="content">
+        <ul>
+            <li>Comment vous structurez et faites évoluer le projet.</li>
+            <li>Les apprentissages, choix et étapes marquantes.</li>
+            <li>Ce qui vous motive à continuer et à faire grandir cet univers.</li>
+        </ul>
+    </div>
+</details>
+
+<details>
+    <summary>
+        6) Vision, suite & message final
+        <span class="chev" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="rgba(243,246,255,.9)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </span>
+    </summary>
+    <div class="content">
+        <ul>
+            <li>Les prochaines étapes pour La planète Takoo.</li>
+            <li>Le message que vous souhaitez laisser au public.</li>
+            <li>Où suivre votre travail et comment découvrir l’univers.</li>
+        </ul>
+    </div>
+</details>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="foot">
+                <span>FWI AMBITION</span>
+            </div>
+            <small>Document de préparation — Trame d’échange (Thierry Dupré) • <span id="year"></span></small>
+        </div>
+        </div>
+    </footer>
+
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Print
+        document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+        // Optional: only one accordion open at a time
+        const all = document.querySelectorAll('#axes details');
+        all.forEach(d => {
+            d.addEventListener('toggle', () => {
+                if (d.open) all.forEach(o => { if (o !== d) o.open = false; });
+            });
+        });
+    </script>
+</body>
+
+</html>
